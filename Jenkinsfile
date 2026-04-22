@@ -25,7 +25,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn sonar:sonar'// o mvn test / pytest
                 }
             }
         }
