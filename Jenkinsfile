@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Instalación de dependencias') {
             steps {
-                sh 'npm install'   // o mvn install / pip install según tu stack
+                sh 'npm install'  
             }
         }
 
