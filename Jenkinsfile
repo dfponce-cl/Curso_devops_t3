@@ -3,7 +3,8 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        GITHUB_PACKAGES_CREDENTIALS = credentials('github-packages-creds')
+        //GITHUB_PACKAGES_CREDENTIALS = credentials('github-packages-creds')
+        GITHUB_TOKEN = credentials('github-pat')
         IMAGE_NAME = "tuusuario/curso-devops-lab3"
         VERSION = "1.0.0"
     }
