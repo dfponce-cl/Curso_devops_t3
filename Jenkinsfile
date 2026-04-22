@@ -43,7 +43,7 @@ pipeline {
                 sh 'npm run build'   // o mvn package / gradle build
             }
         }
-
+/*
         stage('Docker Build Multistage') {
             steps {
                 script {
@@ -89,6 +89,6 @@ pipeline {
                 sh "kubectl set image deployment curso-devops-lab3 curso-devops-lab3=$IMAGE_NAME:${BUILD_NUMBER} -n dponce"
                 sh "kubectl rollout status deployment curso-devops-lab3 -n dponce"
             }
-        }
+        }*/
     }
 }
