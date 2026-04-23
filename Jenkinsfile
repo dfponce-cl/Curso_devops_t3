@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage('Integración'){
             steps{
-                echo 'install...'
+                sh "echo 'install...'"
                 sh "npm install"
                 sh "ls -l"
                 sh "hostname"
