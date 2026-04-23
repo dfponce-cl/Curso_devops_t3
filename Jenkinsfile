@@ -16,13 +16,13 @@ pipeline{
         }
         stage('Ejecución de pruebas') {
             steps {
-                sh 'npm test'      // o mvn test / pytest
+                sh "npm test"      // o mvn test / pytest
             }
         }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
-                    sh 'mvn sonar:sonar'
+                    sh "mvn sonar:sonar"
                 }
             }
         }
