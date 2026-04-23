@@ -7,7 +7,7 @@ pipeline{
             }
     }
     stages{
-        stage('Dependencias ..'){
+        stage('Dependencias ..') {
             steps{
                 sh "npm install"
                 sh "ls -l"
@@ -23,8 +23,10 @@ pipeline{
             steps {
                 sh "npm run build"
             }
-        }       
-        stage("Quality Assurance"){
+        }   
+    }
+    stages {    
+        stage("Quality Assurance") {
             agent {
                 docker {
                     image 'sonarsource/sonar-scanner-cli'
