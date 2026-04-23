@@ -13,7 +13,7 @@ pipeline {
         stage('Instalación de dependencias ') {
             steps {
                 sh "echo 'install'"  
-                sh 'npm install'  
+                sh "npm install"  
             }
         }
 
