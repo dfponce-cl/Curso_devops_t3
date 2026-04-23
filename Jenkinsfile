@@ -23,14 +23,14 @@ pipeline{
             steps {
                 sh "npm run build"
             }
-        }
-    }   
-    stage("Quality Assurance"){
-        agent {
-            docker {
-                image 'sonarsource/sonar-scanner-cli'
-                args '--network=devops-infra_default'
-                reuseNode true
+        }       
+        stage("Quality Assurance"){
+            agent {
+                docker {
+                    image 'sonarsource/sonar-scanner-cli'
+                    args '--network=devops-infra_default'
+                    reuseNode true
+                }
             }
         }
     }
