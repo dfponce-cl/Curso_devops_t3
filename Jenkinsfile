@@ -3,9 +3,12 @@ pipeline{
         image "docker:24"
     }
     stages{
-        stage('Build'){
+        stage('Integración'){
             steps{
-                echo 'Building...'
+                echo 'install...'
+                sh "npm install"
+                sh "ls -l"
+                sh "hostname"
             }
         }
         stage('Test'){
