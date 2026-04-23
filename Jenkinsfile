@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker{
+            image: 'node:14'
+        }
+    }
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
@@ -14,6 +18,8 @@ pipeline {
             steps {
                 sh "echo 'install'"  
                 sh "npm install"  
+                sh "ls -l" 
+                sh "hostname" 
             }
         }
 
