@@ -25,21 +25,21 @@ pipeline{
             }
         }
     }
-stage("Quality Assurance"){
-            agent {
-                docker {
-                    image 'sonarsource/sonar-scanner-cli'
-                    args '--network=devops-infra_default'
-                    reuseNode true
-                }
+    stage("Quality Assurance"){
+        agent {
+            docker {
+                image 'sonarsource/sonar-scanner-cli'
+                args '--network=devops-infra_default'
+                reuseNode true
             }
-            stages{
-                stage("validacion de codigo"){
-                    steps{
-                        withSonarQubeEnv('sonarqube'){
-                            sh 'sonar-scanner'
-                        }
+        }
+        stages{
+            stage("validacion de codigo"){
+                steps{
+                    withSonarQubeEnv('sonarqube'){
+                        sh 'sonar-scanner'
                     }
+                }
             }
             stage('validacion quality gate'){
                 steps{
@@ -49,9 +49,9 @@ stage("Quality Assurance"){
                              error "La puerta de calidad ha fallado : ${qualityGate.status}"
                         }
                     }
-                    }
                 }
             }
         }
+    }
 
 }
