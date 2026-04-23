@@ -14,15 +14,18 @@ pipeline{
                 sh "hostname"
             }
         }
-        stage('Test'){
-            steps{
-                echo 'Testing...'
+        stage('Ejecución de pruebas') {
+            steps {
+                sh 'npm test'      // o mvn test / pytest
             }
         }
-        stage('Deploy'){
-            steps{
-                echo 'Deploying...'
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
+
     }
 }
