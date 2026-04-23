@@ -1,19 +1,11 @@
 pipeline {
     agent {
-        docker{
+        docker
+        {
             image: "node:24"
         }
     }
-
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        //GITHUB_PACKAGES_CREDENTIALS = credentials('github-packages-creds')
-        GITHUB_TOKEN = credentials('github-pat')
-        IMAGE_NAME = "tuusuario/curso-devops-lab3"
-        VERSION = "1.0.0"
-    }
-
-    stages {
+     stages {
         stage('Instalación de dependencias ') {
             steps {
                 sh "echo 'install'"  
