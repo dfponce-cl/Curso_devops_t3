@@ -1,6 +1,10 @@
 pipeline{
-    agent docker{
-        image "docker:24"
+    agent {
+        docker
+            {
+                image "docker:24"
+            
+            }
     }
     stages{
         stage('Integración'){
