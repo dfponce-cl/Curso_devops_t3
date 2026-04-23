@@ -24,8 +24,6 @@ pipeline{
                 sh "npm run build"
             }
         }   
-    }
-    stages {    
         stage("Quality Assurance") {
             agent {
                 docker {
