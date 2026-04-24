@@ -16,10 +16,10 @@ pipeline {
     // Aca podemos declarar variables que luego podemos acceder como variables de ambiente dentro del pipeline
     // usando "env.". Estas variables solo existen en este pipeline.
     environment {
-        IMAGE_NAME = "curso-devops"
-        DH_REPO    = "carlosmarind/curso-devops"
-        GHCR_REPO  = "ghcr.io/carlosmarind/curso-devops"
-        K8S_NAMESPACE  = "curso"
+        IMAGE_NAME = "curso-devops-t3"
+        DH_REPO    = "dfponce/curso-devops-t3"
+        GHCR_REPO  = "ghcr.io/dfponce-cl/curso-devops-t3"
+        K8S_NAMESPACE  = "dponce"
         K8S_DEPLOYMENT = "curso-devops-deployment"
         K8S_CONTAINER  = "contenedor-curso-devops"
 
