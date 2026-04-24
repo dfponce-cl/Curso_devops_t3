@@ -1,0 +1,24 @@
+name: wordpress-devops
+services:
+  web:
+    image: wordpress:latest
+    environment:
+      - WORDPRESS_DB_HOST=base
+      - WORDPRESS_DB_NAME=wordpress_db
+      - WORDPRESS_DB_USER=user_wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress123
+      - PORT=${PORT}
+    ports:
+      - 8080:80
+  base:
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin123
+      - MYSQL_USER=user_wordpress
+      - MYSQL_PASSWORD=wordpress123
+      - MYSQL_DATABASE=wordpress_db
+volumes:
+  db_data:
+  
