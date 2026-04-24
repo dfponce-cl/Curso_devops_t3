@@ -25,7 +25,7 @@ pipeline{
             }
         }
     }
-    stage(""){
+    stage("xxxxxxxxxx"){
         agent {
             docker {
                 image "sonarsource/sonar-scanner-cli"
