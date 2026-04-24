@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Ejecución de pruebas') {
             steps {
-                sh "npm run test"      // o mvn test / pytest
+                sh "npm run test:cov"      // o mvn test / pytest
             }
         }
         stage("CI de la aplicacion - build") {
