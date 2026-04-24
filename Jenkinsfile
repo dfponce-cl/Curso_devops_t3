@@ -1,7 +1,3 @@
-// Una funcion en un jenkins file Se escribe como cualquier funcion. Tiene un nombre, 
-// y parametros y comienza con la palabra reservada def. Esta funcion se llama tagAndPush
-// y sirve para resumir la logica de upload de imagenes sin repetir el que teniamos antes.
-
 def tagAndPush(String localImage, String repo, String registry, String credential) {
 
     docker.withRegistry(registry, credential) {
@@ -99,6 +95,41 @@ pipeline {
                     }
                 }
             }
-        }        
+        }
+        stage("CD de la aplicacion - build dockerfile") {
+            steps {
+                sh "docker build -t ${env.IMAGE_NAME} ."
+                script {
+                    if (!env.APP_SEMANTIC_VERSION?.trim()) {
+                        error("APP_SEMANTIC_VERSION no definida en el stage anterior")
+                    }
+                    // Aca llamamos a la funcion que definimos al principio , y ya esta funcion 
+                    // hace login en dockerhub y github con docker.withRegistry y sube ambas imagenes
+                    //tagAndPush(env.IMAGE_NAME, env.DH_REPO, "https://index.docker.io/v1/", "credencial-dh")
+                    //tagAndPush(env.IMAGE_NAME, env.GHCR_REPO, "https://ghcr.io", "credencial-gh")
+                }
+            }
+        }
+        stage("CD - Despliegue continuo en develop"){
+            agent {
+                docker {
+                    image 'alpine/k8s:1.34.6'
+                    reuseNode true
+                }
+            }
+            steps{
+                script {
+                    if (!env.APP_SEMANTIC_VERSION?.trim()) {
+                        error("APP_SEMANTIC_VERSION no definida para el despliegue")
+                    }
+                }
+                withKubeConfig([credentialsId: 'credencial-k8']) {
+                    //sh """
+                       // kubectl -n ${env.K8S_NAMESPACE} set image deployment/${env.K8S_DEPLOYMENT} ${env.K8S_CONTAINER}=${env.DH_REPO}:${env.APP_SEMANTIC_VERSION}
+                       // kubectl -n ${env.K8S_NAMESPACE} rollout status deployment/${env.K8S_DEPLOYMENT}
+                    //"""
+                }
+            }
+        }
     }
 }
