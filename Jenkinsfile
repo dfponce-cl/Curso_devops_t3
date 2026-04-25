@@ -17,7 +17,7 @@ pipeline {
     // usando "env.". Estas variables solo existen en este pipeline.
     environment {
         IMAGE_NAME = "curso-devops-t3"
-        DH_REPO    = "dfponce/curso-devops-t3"
+        DH_REPO    = "dfponce/curso_devops_uchile"
         GHCR_REPO  = "ghcr.io/dfponce-cl/curso-devops-t3"
         K8S_NAMESPACE  = "dponce"
         K8S_DEPLOYMENT = "curso-devops-deployment"
