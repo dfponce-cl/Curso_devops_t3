@@ -97,7 +97,7 @@ pipeline {
                 }
             }
         }
-        stage("CD de la aplicacion - build dockerfile") {
+        /*stage("CD de la aplicacion - build dockerfile") {
             steps {
                 sh "docker build -t ${env.IMAGE_NAME} ."
                 script {
@@ -110,7 +110,7 @@ pipeline {
                     tagAndPush(env.IMAGE_NAME, env.GHCR_REPO, "https://ghcr.io", "credencial-gh")
                 }
             }
-        }
+        }*/
         stage("CD - Despliegue continuo en develop"){
             agent {
                 docker {
@@ -118,19 +118,19 @@ pipeline {
                     reuseNode true
                 }
             }
-            steps{
+            /*steps{
                 script {
                     if (!env.APP_SEMANTIC_VERSION?.trim()) {
                         error("APP_SEMANTIC_VERSION no definida para el despliegue")
                     }
                 }
                 withKubeConfig([credentialsId: 'credencial-k8']) {
-                    //sh """
-                       // kubectl -n ${env.K8S_NAMESPACE} set image deployment/${env.K8S_DEPLOYMENT} ${env.K8S_CONTAINER}=${env.DH_REPO}:${env.APP_SEMANTIC_VERSION}
-                       // kubectl -n ${env.K8S_NAMESPACE} rollout status deployment/${env.K8S_DEPLOYMENT}
-                    //"""
+                    sh """
+                       kubectl -n ${env.K8S_NAMESPACE} set image deployment/${env.K8S_DEPLOYMENT} ${env.K8S_CONTAINER}=${env.DH_REPO}:${env.APP_SEMANTIC_VERSION}
+                       kubectl -n ${env.K8S_NAMESPACE} rollout status deployment/${env.K8S_DEPLOYMENT}
+                    """
                 }
-            }
+            }*/
         }
     }
 }
